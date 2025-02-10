@@ -48,7 +48,7 @@ include(CheckLibraryExists)
 include(CheckFunctionExists)
 
 # Add required includes and install locations for openssl
-find_package(OpenSSL 3.0 REQUIRED)
+find_package(OpenSSL 3.3.1 REQUIRED)
 include_directories(${OPENSSL_INCLUDE_DIR})
 if (WIN32)
 # get_filename_component seems to fail when facing windows paths

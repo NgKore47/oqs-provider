@@ -1429,6 +1429,8 @@ OQSX_KEY *oqsx_key_new(OSSL_LIB_CTX *libctx, char *oqs_name, char *tls_name,
     ret->lock = CRYPTO_THREAD_lock_new();
     ON_ERR_GOTO(!ret->lock, err);
 #endif
+                    
+    printf("OQS name: %s\n",oqs_name);
 
     if (oqs_name == NULL) {
         OQS_KEY_PRINTF("OQSX_KEY: Fatal error: No OQS key name provided:\n");
@@ -1617,7 +1619,7 @@ OQSX_KEY *oqsx_key_new(OSSL_LIB_CTX *libctx, char *oqs_name, char *tls_name,
     }
 
     OQS_KEY_PRINTF2("OQSX_KEY: new key created: %s\n", ret->tls_name);
-    OQS_KEY_PRINTF3("OQSX_KEY: new key created: %p (type: %d)\n", ret,
+    printf("OQSX_KEY: new key created: %p (type: %d)\n", ret,
                     ret->keytype);
     return ret;
 err:
@@ -1732,6 +1734,11 @@ int oqsx_key_fromdata(OQSX_KEY *key, const OSSL_PARAM params[],
                                 key->keytype == KEY_TYPE_ECX_HYB_KEM;
 
     OQS_KEY_PRINTF("OQSX Key from data called\n");
+
+    //lakshya
+    printf("Key's TLS Name: %s\n",key->tls_name);
+    printf("Public Key size: %u\n",key->evp_info->length_public_key);
+
     pp1 = OSSL_PARAM_locate_const(params, OSSL_PKEY_PARAM_PRIV_KEY);
     pp2 = OSSL_PARAM_locate_const(params, OSSL_PKEY_PARAM_PUB_KEY);
     // at least one parameter must be given

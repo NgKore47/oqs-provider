@@ -88,6 +88,7 @@ static int oqs_kem_decapsencaps_init(void *vpkemctx, void *vkem,
 static int oqs_kem_encaps_init(void *vpkemctx, void *vkem,
                                const OSSL_PARAM params[]) {
     OQS_KEM_PRINTF("OQS KEM provider called: encaps_init\n");
+    printf("OQS KEM provider called: encaps_init\n");
     return oqs_kem_decapsencaps_init(vpkemctx, vkem, EVP_PKEY_OP_ENCAPSULATE);
 }
 
@@ -105,7 +106,7 @@ static int oqs_qs_kem_encaps_keyslot(void *vpkemctx, unsigned char *out,
     const PROV_OQSKEM_CTX *pkemctx = (PROV_OQSKEM_CTX *)vpkemctx;
     const OQS_KEM *kem_ctx = NULL;
 
-    OQS_KEM_PRINTF("OQS KEM provider called: encaps\n");
+    printf("OQS KEM provider called: encaps. QS\n");
     if (pkemctx->kem == NULL) {
         OQS_KEM_PRINTF("OQS Warning: OQS_KEM not initialized\n");
         return -1;
